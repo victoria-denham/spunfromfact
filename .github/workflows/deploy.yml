@@ -16,11 +16,15 @@ jobs:
         run: |
           cd dist
           zip -r ../site.zip index.html sff-mark.png fonts/
+          echo "Zip contents:"
+          unzip -l ../site.zip
 
       - name: Deploy to Tiiny Host
         run: |
-          curl -s -X POST "https://api.tiiny.site" \
+          echo "Deploying to spunfromfact.tiiny.site..."
+          curl -v -X POST "https://api.tiiny.site" \
             -H "Authorization: Bearer ${{ secrets.TIINY_API_TOKEN }}" \
             -F "file=@site.zip" \
             -F "domain=spunfromfact" \
-            -F "tiny-url=spunfromfact"
+            -F "tiny-url=spunfromfact" \
+            2>&1
