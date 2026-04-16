@@ -1,0 +1,624 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spun From Fact</title>
+    <meta
+      name="description"
+      content="Factual content about the systems that fail people. Evidence-based. Plain English."
+    />
+    <meta property="og:title" content="Spun From Fact" />
+    <meta
+      property="og:description"
+      content="Factual content about the systems that fail people."
+    />
+    <meta
+      property="og:image"
+      content="https://spunfromfact.substack.com/og-image.jpg"
+    />
+    <style>
+      @font-face {
+        font-family: "Oswald";
+        src: url("fonts/Oswald-Bold.ttf") format("truetype");
+        font-weight: 700;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: "Oswald";
+        src: url("fonts/Oswald-Regular.ttf") format("truetype");
+        font-weight: 400;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: "Playfair Display";
+        src: url("fonts/PlayfairDisplay-Regular.ttf") format("truetype");
+        font-weight: 400;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: "Playfair Display";
+        src: url("fonts/PlayfairDisplay-Italic.ttf") format("truetype");
+        font-weight: 400;
+        font-style: italic;
+      }
+      @font-face {
+        font-family: "Playfair Display";
+        src: url("fonts/PlayfairDisplay-Bold.ttf") format("truetype");
+        font-weight: 700;
+        font-style: normal;
+      }
+
+      /* --- Reset & Base --- */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --pink: #ff2d78;
+        --teal: #1b8fa8;
+        --parchment: #f9f5ed;
+        --ink: #201823;
+        --sand: #f2daac;
+        --olive: #877128;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background-color: var(--parchment);
+        color: var(--ink);
+        font-family: "Playfair Display", Georgia, serif;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      /* --- Layout --- */
+      .page {
+        width: 100%;
+        max-width: 480px;
+        padding: 48px 24px 64px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+      }
+
+      /* --- Masthead --- */
+      .masthead {
+        text-align: center;
+        width: 100%;
+        margin-bottom: 32px;
+      }
+
+      .masthead__mark {
+        width: 64px;
+        height: 64px;
+        object-fit: contain;
+        margin-bottom: 16px;
+        opacity: 0.9;
+      }
+
+      .masthead__eyebrow {
+        font-family: "Playfair Display", Georgia, serif;
+        font-style: italic;
+        font-size: 13px;
+        letter-spacing: 0.08em;
+        color: var(--olive);
+        margin-bottom: 6px;
+        text-transform: none;
+      }
+
+      .masthead__rule {
+        width: 36px;
+        height: 3px;
+        background: var(--pink);
+        margin: 0 auto 12px;
+        border: none;
+      }
+
+      .masthead__title {
+        font-family: "Oswald", Impact, sans-serif;
+        font-weight: 700;
+        font-size: 32px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--ink);
+        line-height: 1;
+        margin-bottom: 12px;
+      }
+
+      .masthead__tagline {
+        font-family: "Playfair Display", Georgia, serif;
+        font-style: italic;
+        font-size: 15px;
+        color: var(--ink);
+        opacity: 0.75;
+        line-height: 1.5;
+        max-width: 320px;
+        margin: 0 auto;
+      }
+
+      /* --- Primary CTA (Substack) --- */
+      .cta-primary {
+        width: 100%;
+        margin-bottom: 40px;
+      }
+
+      .cta-primary__label {
+        font-family: "Playfair Display", Georgia, serif;
+        font-style: italic;
+        font-size: 12px;
+        letter-spacing: 0.1em;
+        color: var(--olive);
+        text-align: center;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+      }
+
+      .cta-primary__btn {
+        display: block;
+        width: 100%;
+        background: var(--ink);
+        color: var(--parchment);
+        font-family: "Oswald", Impact, sans-serif;
+        font-weight: 700;
+        font-size: 15px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        text-decoration: none;
+        text-align: center;
+        padding: 16px 24px;
+        border: none;
+        cursor: pointer;
+        transition: background 0.18s ease;
+        position: relative;
+      }
+
+      .cta-primary__btn::before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 3px;
+        background: var(--pink);
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      .cta-primary__btn:hover {
+        background: #2d1f30;
+      }
+
+      .cta-primary__sub {
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: 12px;
+        color: var(--olive);
+        text-align: center;
+        margin-top: 8px;
+        font-style: italic;
+      }
+
+      /* --- Section divider --- */
+      .section-divider {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 28px;
+      }
+
+      .section-divider__line {
+        flex: 1;
+        height: 1px;
+        background: var(--ink);
+        opacity: 0.15;
+      }
+
+      .section-divider__label {
+        font-family: "Playfair Display", Georgia, serif;
+        font-style: italic;
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        color: var(--olive);
+        white-space: nowrap;
+      }
+
+      /* --- Link list --- */
+      .links {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 40px;
+      }
+
+      .link-item {
+        display: flex;
+        align-items: stretch;
+        text-decoration: none;
+        border: 1px solid rgba(32, 24, 35, 0.12);
+        background: rgba(255, 255, 255, 0.45);
+        transition:
+          background 0.15s ease,
+          border-color 0.15s ease;
+        position: relative;
+      }
+
+      .link-item:hover {
+        background: rgba(255, 255, 255, 0.7);
+        border-color: rgba(32, 24, 35, 0.25);
+      }
+
+      .link-item--tiktok .link-item__accent {
+        background: var(--pink);
+      }
+      .link-item--instagram .link-item__accent {
+        background: var(--teal);
+      }
+      .link-item--clearpath .link-item__accent {
+        background: var(--olive);
+      }
+
+      .link-item__accent {
+        width: 4px;
+        flex-shrink: 0;
+      }
+
+      .link-item__body {
+        padding: 14px 16px;
+        flex: 1;
+      }
+
+      .link-item__platform {
+        font-family: "Playfair Display", Georgia, serif;
+        font-style: italic;
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        color: var(--olive);
+        text-transform: uppercase;
+        margin-bottom: 2px;
+      }
+
+      .link-item__title {
+        font-family: "Oswald", Impact, sans-serif;
+        font-weight: 700;
+        font-size: 14px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--ink);
+        line-height: 1.2;
+      }
+
+      .link-item__arrow {
+        display: flex;
+        align-items: center;
+        padding: 0 16px 0 8px;
+        color: var(--ink);
+        opacity: 0.3;
+        font-size: 16px;
+        flex-shrink: 0;
+      }
+
+      /* --- Latest cards --- */
+      .latest {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 40px;
+      }
+
+      /* Shared card base */
+      .card {
+        padding: 24px;
+        position: relative;
+        overflow: hidden;
+        text-decoration: none;
+        display: block;
+        transition: opacity 0.15s ease;
+      }
+
+      .card:hover {
+        opacity: 0.9;
+      }
+
+      .card::before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 3px;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      .card__eyebrow {
+        font-family: "Playfair Display", Georgia, serif;
+        font-style: italic;
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+      }
+
+      .card__rule {
+        width: 28px;
+        height: 3px;
+        margin-bottom: 10px;
+        border: none;
+      }
+
+      .card__title {
+        font-family: "Oswald", Impact, sans-serif;
+        font-weight: 700;
+        font-size: 18px;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        line-height: 1.2;
+        margin-bottom: 8px;
+      }
+
+      .card__desc {
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: 13px;
+        font-style: italic;
+        line-height: 1.5;
+        margin-bottom: 14px;
+        opacity: 0.8;
+      }
+
+      .card__cta {
+        font-family: "Oswald", Impact, sans-serif;
+        font-weight: 400;
+        font-size: 12px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      /* Card — Ink ground (dark) */
+      .card--ink {
+        background: var(--ink);
+      }
+      .card--ink::before {
+        background: var(--pink);
+      }
+      .card--ink .card__eyebrow {
+        color: var(--pink);
+      }
+      .card--ink .card__rule {
+        background: var(--pink);
+      }
+      .card--ink .card__title {
+        color: var(--parchment);
+      }
+      .card--ink .card__desc {
+        color: var(--sand);
+      }
+      .card--ink .card__cta {
+        color: var(--pink);
+      }
+
+      /* Card — Parchment ground (light editorial) */
+      .card--parchment {
+        background: rgba(255, 255, 255, 0.5);
+        border: 1px solid rgba(32, 24, 35, 0.12);
+      }
+      .card--parchment::before {
+        background: var(--teal);
+      }
+      .card--parchment .card__eyebrow {
+        color: var(--teal);
+      }
+      .card--parchment .card__rule {
+        background: var(--teal);
+      }
+      .card--parchment .card__title {
+        color: var(--ink);
+      }
+      .card--parchment .card__desc {
+        color: var(--ink);
+      }
+      .card--parchment .card__cta {
+        color: var(--teal);
+      }
+
+      /* Card — Pink ground (bold) */
+      .card--pink {
+        background: var(--pink);
+      }
+      .card--pink::before {
+        background: var(--parchment);
+      }
+      .card--pink .card__eyebrow {
+        color: rgba(249, 245, 237, 0.7);
+      }
+      .card--pink .card__rule {
+        background: var(--parchment);
+      }
+      .card--pink .card__title {
+        color: var(--parchment);
+      }
+      .card--pink .card__desc {
+        color: var(--parchment);
+      }
+      .card--pink .card__cta {
+        color: var(--parchment);
+      }
+
+      /* --- Footer --- */
+      .footer {
+        width: 100%;
+        text-align: center;
+        border-top: 1px solid rgba(32, 24, 35, 0.1);
+        padding-top: 24px;
+      }
+
+      .footer__mark {
+        width: 24px;
+        height: 24px;
+        object-fit: contain;
+        opacity: 0.2;
+        margin-bottom: 8px;
+      }
+
+      .footer__text {
+        font-family: "Playfair Display", Georgia, serif;
+        font-style: italic;
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        color: var(--olive);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <!-- Masthead -->
+      <header class="masthead">
+        <img src="sff-mark.png" alt="Spun From Fact" class="masthead__mark" />
+        <p class="masthead__eyebrow">Independent media</p>
+        <hr class="masthead__rule" />
+        <h1 class="masthead__title">Spun From Fact</h1>
+        <p class="masthead__tagline">
+          Exposing the systems designed to fail people. Evidence-based. Plain English.
+        </p>
+      </header>
+
+      <!-- Primary CTA -->
+      <div class="cta-primary">
+        <p class="cta-primary__label">Get the long reads by email</p>
+        <a
+          href="https://spunfromfact.substack.com/?utm_campaign=pub&utm_medium=web"
+          class="cta-primary__btn"
+          target="_blank"
+          rel="noopener"
+        >
+          Subscribe free
+        </a>
+        <p class="cta-primary__sub">No payment needed. Unsubscribe any time.</p>
+      </div>
+
+      <!-- Latest piece -->
+      <div class="section-divider">
+        <span class="section-divider__line"></span>
+        <span class="section-divider__label">Latest</span>
+        <span class="section-divider__line"></span>
+      </div>
+
+      <div class="latest">
+        <!-- Card 1 — Ink ground -->
+        <a
+          href="https://spunfromfact.substack.com/p/motability-changes"
+          class="card card--ink"
+          target="_blank"
+          rel="noopener"
+        >
+          <p class="card__eyebrow">Sense Check</p>
+          <hr class="card__rule" />
+          <h2 class="card__title">
+            What Is Actually Changing
+          </h2>
+          <p class="card__desc">
+            The Motability Scheme changes explained. What applies to you, when it kicks in, and who is most exposed.
+          </p>
+          <span class="card__cta">Read the full breakdown &rarr;</span>
+        </a>
+
+        <!-- Card 2 — Parchment ground -->
+        <a
+          href="https://open.substack.com/pub/spunfromfact/p/motability-scheming?r=7d5aav&utm_campaign=post&utm_medium=web"
+          class="card card--parchment"
+          target="_blank"
+          rel="noopener"
+        >
+          <p class="card__eyebrow">Sense Check</p>
+          <hr class="card__rule" />
+          <h2 class="card__title">
+            Is the Motability Scheme ripping you off?
+          </h2>
+          <p class="card__desc">
+            The conversation is about surveillance. The story is about money.
+          </p>
+          <span class="card__cta">Read the full breakdown &rarr;</span>
+        </a>
+
+        <!-- Card 3 — Pink ground -->
+        <a
+          href="https://spunfromfact.substack.com/p/is-parental-alienation-real?r=7d5aav"
+          class="card card--pink"
+          target="_blank"
+          rel="noopener"
+        >
+          <p class="card__eyebrow">Who Told the Court That? — Part 2</p>
+          <hr class="card__rule" />
+          <h2 class="card__title">
+            The UN called it a pseudo-concept. Courts use it in 70% of cases.
+          </h2>
+          <p class="card__desc">
+            Parental alienation has no agreed definition, no scientific
+            consensus, and no regulation. Here is how it gets used.
+          </p>
+          <span class="card__cta">Read the full breakdown &rarr;</span>
+        </a>
+      </div>
+
+      <!-- Links -->
+      <div class="section-divider">
+        <span class="section-divider__line"></span>
+        <span class="section-divider__label">Find the work</span>
+        <span class="section-divider__line"></span>
+      </div>
+
+      <nav class="links" aria-label="Platform links">
+        <a
+          href="https://www.tiktok.com/@spunfromfact"
+          class="link-item link-item--tiktok"
+          target="_blank"
+          rel="noopener"
+        >
+          <span class="link-item__accent"></span>
+          <span class="link-item__body">
+            <span class="link-item__platform">TikTok</span>
+            <span class="link-item__title">@spunfromfact — Videos</span>
+          </span>
+          <span class="link-item__arrow">&#8599;</span>
+        </a>
+
+        <a
+          href="https://www.instagram.com/spunfromfact/"
+          class="link-item link-item--instagram"
+          target="_blank"
+          rel="noopener"
+        >
+          <span class="link-item__accent"></span>
+          <span class="link-item__body">
+            <span class="link-item__platform">Instagram</span>
+            <span class="link-item__title"
+              >@spunfromfact — Reels &amp; Posts</span
+            >
+          </span>
+          <span class="link-item__arrow">&#8599;</span>
+        </a>
+      </nav>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <img
+          src="sff-mark.png"
+          alt=""
+          class="footer__mark"
+          aria-hidden="true"
+        />
+        <p class="footer__text">Spun From Fact &mdash; Victoria Denham</p>
+      </footer>
+    </main>
+  </body>
+</html>
